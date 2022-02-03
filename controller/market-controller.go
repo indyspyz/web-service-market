@@ -7,27 +7,27 @@ import (
 )
 
 type MarketController interface {
-	FindAll() []entity.Market
-	Save(ctx *gin.Context) entity.Market
+	FindMarket() []entity.Market
+	AddMarket(ctx *gin.Context) entity.Market
 }
 
-type controller struct {
+type marketController struct {
 	service service.MarketService
 }
 
-func New(service service.MarketService) MarketController {
-	return &controller{
+func NewMarket(service service.MarketService) MarketController {
+	return &marketController{
 		service: service,
 	}
 }
 
-func (c *controller) FindAll() []entity.Market {
-	return c.service.FindAll()
+func (c *marketController) FindMarket() []entity.Market {
+	return c.service.FindMarket()
 }
 
-func (c *controller) Save(ctx *gin.Context) entity.Market {
+func (c *marketController) AddMarket(ctx *gin.Context) entity.Market {
 	var market entity.Market
 	ctx.BindJSON(&market)
-	c.service.Save(market)
+	c.service.AddMarket(market)
 	return market
 }

@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	marketService    service.MarketService       = service.New()
-	MarketController controller.MarketController = controller.New(marketService)
+	marketService    service.MarketService       = service.NewMarket()
+	MarketController controller.MarketController = controller.NewMarket(marketService)
 )
 
 func setuoLogOutPut() {
@@ -27,11 +27,11 @@ func main() {
 	server.Use(gin.Recovery(), middlewares.Logger())
 
 	server.GET("/markets", func(ctx *gin.Context) {
-		ctx.JSON(200, MarketController.FindAll())
+		ctx.JSON(200, MarketController.FindMarket())
 	})
 
 	server.POST("/markets", func(ctx *gin.Context) {
-		ctx.JSON(200, MarketController.Save(ctx))
+		ctx.JSON(200, MarketController.AddMarket(ctx))
 	})
 
 	server.Run(":8080")

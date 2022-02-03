@@ -5,23 +5,23 @@ import (
 )
 
 type MarketService interface {
-	Save(entity.Market) entity.Market
-	FindAll() []entity.Market
+	AddMarket(entity.Market) entity.Market
+	FindMarket() []entity.Market
 }
 
 type marketService struct {
 	markets []entity.Market
 }
 
-func New() MarketService {
+func NewMarket() MarketService {
 	return &marketService{}
 }
 
-func (service *marketService) Save(market entity.Market) entity.Market {
+func (service *marketService) AddMarket(market entity.Market) entity.Market {
 	service.markets = append(service.markets, market)
 	return market
 }
 
-func (service *marketService) FindAll() []entity.Market {
+func (service *marketService) FindMarket() []entity.Market {
 	return service.markets
 }
