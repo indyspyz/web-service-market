@@ -1,0 +1,14 @@
+GET api/v1/shops
+GET api/v1/shops/:id
+POST api/v1/shops
+PUT api/v1/shops/:id
+DELETE api/v1/shops/:id
+
+
+GET api/v1/shops/:shopId/products
+GET api/v1/shops/:shopId/products/:productId
+POST api/v1/shops/:shopId/products/:productId
+PUT api/v1/shops/:shopId/products/:productId
+DELETE api/v1/shops/:shopId/products/:productId
+
+GET api/v1/shops/products

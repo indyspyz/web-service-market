@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	marketService    service.MarketService       = service.NewMarket()
-	MarketController controller.MarketController = controller.NewMarket(marketService)
+	shopService    service.ShopService       = service.NewShop()
+	ShopController controller.ShopController = controller.NewShop(shopService)
 
 	productService    service.ProductService       = service.NewProduct()
 	ProductController controller.ProductController = controller.NewProduct(productService)
@@ -25,25 +25,25 @@ func setuoLogOutPut() {
 
 func main() {
 	setuoLogOutPut()
-	server := gin.New()
+	api := gin.New()
 
-	server.Use(gin.Recovery(), middlewares.Logger())
+	api.Use(gin.Recovery(), middlewares.Logger())
 
-	server.GET("/markets/findmarket", func(ctx *gin.Context) {
-		ctx.JSON(200, MarketController.FindMarket())
+	api.GET("/shop/findshop", func(ctx *gin.Context) {
+		ctx.JSON(200, ShopController.FindShop())
 	})
 
-	server.POST("/markets/addmarket", func(ctx *gin.Context) {
-		ctx.JSON(200, MarketController.AddMarket(ctx))
+	api.POST("/shop/addshop", func(ctx *gin.Context) {
+		ctx.JSON(200, ShopController.AddShop(ctx))
 	})
 
-	server.GET("/products/findproduct", func(ctx *gin.Context) {
+	api.GET("/products/findproduct", func(ctx *gin.Context) {
 		ctx.JSON(200, ProductController.FindProduct())
 	})
 
-	server.POST("/products/addproduct", func(ctx *gin.Context) {
+	api.POST("/products/addproduct", func(ctx *gin.Context) {
 		ctx.JSON(200, ProductController.AddProduct(ctx))
 	})
 
-	server.Run(":8080")
+	api.Run(":8080")
 }
