@@ -7,7 +7,7 @@ type Market struct {
 
 type Product struct {
 	Id       int    `json:"id"`
-	Name     string `json:"name"`
-	Price    int    `json:"price"`
+	Name     string `json:"productname"`
+	Price    int    `json:"productprice"`
 	MarketId int    `json:"marketid"`
 }
